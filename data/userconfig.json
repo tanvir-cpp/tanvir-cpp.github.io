@@ -1,0 +1,112 @@
+{
+  "name": {
+    "first": "Tanvir",
+    "last": "Rahman"
+  },
+  "role": "Student Researcher @ AIUB",
+  "email": "mailtanvirrahman@gmail.com",
+  "github": "https://github.com/tanvir-cpp",
+  "linkedin": "https://linkedin.com/in/muhammud-tanvir-rahman/",
+  "internshipStatus": "Currently seeking 2026 Internships",
+  "baseUrl": ".",
+  "contact": {
+    "phone": "+880 1XXX-XXXXXX",
+    "location": "Dhaka, Bangladesh",
+    "website": "tanvir-rahman.com"
+  },
+  "hero": {
+    "badge": "Available for Internships",
+    "title": "Hi, <br/> I'm <span class='font-serif italic font-light text-accent-indigo'>Tanvir</span>.",
+    "description": "A Computer Science student specializing in backend infrastructure, concurrent systems, and minimalist software architecture."
+  },
+  "about": {
+    "philosophy": "Building for performance and scale.",
+    "summary": [
+      "I am final year undergraduate student at AIUB, deeply fascinated by how data moves through complex systems. My journey started with C++ and competitive programming, which taught me to appreciate the cost of every clock cycle.",
+      "Today, I focus on building resilient backend services and exploring the internals of databases. I believe that professional software should be as simple as possible, but no simpler."
+    ],
+    "stats": [
+      {
+        "label": "Cumulative GPA",
+        "value": "3.9"
+      },
+      {
+        "label": "Problems Solved",
+        "value": "500+"
+      },
+      {
+        "label": "Major",
+        "value": "SOFTWARE ENGINEERING"
+      },
+      {
+        "label": "Internship Ready",
+        "value": "2026"
+      }
+    ]
+  },
+  "skills": {
+    "languages": [
+      "Go",
+      "C++",
+      "C",
+      "TypeScript",
+      "SQL",
+      "Python"
+    ],
+    "infrastructure": [
+      "Docker",
+      "Kubernetes",
+      "Redis",
+      "PostgreSQL",
+      "Kafka",
+      "AWS"
+    ],
+    "systems": [
+      "Concurrency",
+      "Distributed Systems",
+      "LSM-Trees",
+      "API Design"
+    ]
+  },
+  "experience": [
+    {
+      "role": "Open Source Contributor",
+      "company": "Distributed Systems Community",
+      "location": "Remote",
+      "period": "Jan 2024 — Present",
+      "bullets": [
+        "Contributing to consensus algorithm implementations (Raft/Paxos) and networking primitives using Go.",
+        "Optimized buffer management in storage engines, reducing memory allocations by 15%.",
+        "Collaborating with global maintainers on performance-critical backend modules."
+      ]
+    },
+    {
+      "role": "Undergraduate Researcher",
+      "company": "Systems Lab",
+      "location": "Dhaka, BD",
+      "period": "Jun 2023 — Dec 2023",
+      "bullets": [
+        "Developed benchmarks for low-latency message queues using C++20 and lock-free data structures.",
+        "Investigated cache-aware algorithms and memory-mapped file persistence strategies.",
+        "Presented findings on concurrent hashmap scaling at the undergraduate research symposium."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science & Engineering",
+      "school": "American International University-Bangladesh",
+      "location": "Dhaka, BD",
+      "period": "2023 — 2027",
+      "description": "Focus on Software Engineering & Distributed Systems. CGPA: 3.9/4.0. Relevant Coursework: Data Structures, Operating Systems, Database Management Systems."
+    }
+  ],
+  "awards": [
+    "Dean's Honor List for Academic Excellence (4 consecutive semesters)",
+    "Top 5% rank in university-wide competitive programming contests",
+    "Designed a microservices-based project orchestration tool for local startups"
+  ],
+  "footer": {
+    "quote": "Keep it simple."
+  }
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "slug": "distributed-kv",
+    "title": "Distributed KV Store",
+    "description": "A high-performance distributed key-value store built in C++ using the Raft consensus algorithm for fault tolerance and strong consistency.",
+    "pubDate": "2024-03-15",
+    "heroImage": "https://images.unsplash.com/photo-1713127563314-5163b052cf8b?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tags": ["C++", "Distributed Systems", "Raft"],
+    "github": "https://github.com/tanvir-cpp",
+    "demo": "https://github.com/tanvir-cpp",
+    "featured": true
+  },
+  {
+    "slug": "lsm-tree",
+    "title": "LSM Tree Storage Engine",
+    "description": "A persistent Key-Value store following the Log-Structured Merge Tree architecture. Implemented from scratch in C++ for learning purposes.",
+    "pubDate": "2024-05-15",
+    "tags": ["C++", "System Programming", "Storage"],
+    "heroImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+    "github": "https://github.com/tanvir-cpp",
+    "featured": true
+  },
+  {
+    "slug": "task-queue",
+    "title": "Distributed Task Queue",
+    "description": "A high-performance task queue built in Go, using Redis as the backend. Features include retry logic, task prioritization, and massive concurrency.",
+    "pubDate": "2024-11-20",
+    "tags": ["Go", "Redis", "Distributed Systems"],
+    "heroImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
+    "github": "https://github.com/tanvir-cpp",
+    "featured": true
+  },
+  {
+    "slug": "distributed-kv",
+    "title": "Distributed KV Store",
+    "description": "A high-performance distributed key-value store built in C++ using the Raft consensus algorithm for fault tolerance and strong consistency.",
+    "pubDate": "2024-03-15",
+    "heroImage": "https://images.unsplash.com/photo-1713127563314-5163b052cf8b?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tags": ["C++", "Distributed Systems", "Raft"],
+    "github": "https://github.com/tanvir-cpp",
+    "demo": "https://github.com/tanvir-cpp",
+    "featured": true
+  },
+  {
+    "slug": "distributed-kv",
+    "title": "Distributed KV Store",
+    "description": "A high-performance distributed key-value store built in C++ using the Raft consensus algorithm for fault tolerance and strong consistency.",
+    "pubDate": "2024-03-15",
+    "heroImage": "https://images.unsplash.com/photo-1713127563314-5163b052cf8b?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "tags": ["C++", "Distributed Systems", "Raft"],
+    "github": "https://github.com/tanvir-cpp",
+    "demo": "https://github.com/tanvir-cpp",
+    "featured": true
+  }
+]

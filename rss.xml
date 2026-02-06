@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Tanvir Rahman's Portfolio</title>
+  <link>https://tanvir-rahman.com</link>
+  <description>Technical explorations in distributed systems and backend architecture.</description>
+  <language>en-us</language>
+  <lastBuildDate>Thu, 05 Dec 2024 00:00:00 GMT</lastBuildDate>
+  <atom:link href="https://tanvir-rahman.com/rss.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Concurrency Control Toolkit</title>
+    <link>https://tanvir-rahman.com/project-detail.html?slug=concurrency-toolkit</link>
+    <description>A C++ library providing high-level abstractions for common concurrency patterns, including worker pools, task schedulers, and lock-free sync primitives.</description>
+    <pubDate>Thu, 05 Dec 2024 00:00:00 GMT</pubDate>
+    <guid>https://tanvir-rahman.com/project-detail.html?slug=concurrency-toolkit</guid>
+  </item>
+
+  <item>
+    <title>Distributed Task Queue</title>
+    <link>https://tanvir-rahman.com/project-detail.html?slug=task-queue</link>
+    <description>A high-performance task queue built in Go, using Redis as the backend. Features include retry logic, task prioritization, and massive concurrency.</description>
+    <pubDate>Wed, 20 Nov 2024 00:00:00 GMT</pubDate>
+    <guid>https://tanvir-rahman.com/project-detail.html?slug=task-queue</guid>
+  </item>
+
+  <item>
+    <title>LSM Tree Storage Engine</title>
+    <link>https://tanvir-rahman.com/project-detail.html?slug=lsm-tree</link>
+    <description>A persistent Key-Value store following the Log-Structured Merge Tree architecture. Implemented from scratch in C++ for learning purposes.</description>
+    <pubDate>Wed, 15 May 2024 00:00:00 GMT</pubDate>
+    <guid>https://tanvir-rahman.com/project-detail.html?slug=lsm-tree</guid>
+  </item>
+
+  <item>
+    <title>Distributed KV Store</title>
+    <link>https://tanvir-rahman.com/project-detail.html?slug=distributed-kv</link>
+    <description>A high-performance distributed key-value store built in C++ using the Raft consensus algorithm for fault tolerance and strong consistency.</description>
+    <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+    <guid>https://tanvir-rahman.com/project-detail.html?slug=distributed-kv</guid>
+  </item>
+
+</channel>
+</rss>

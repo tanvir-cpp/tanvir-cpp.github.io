@@ -1,0 +1,23 @@
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 group no-print" id="nav">
+    <div class="container flex justify-between items-center h-full">
+        <a href="index.html"
+            class="text-xl font-bold tracking-tighter hover:text-accent-indigo transition-all flex items-center gap-1.5 group-hover:scale-105 duration-300">
+            <span class="font-serif italic font-light text-accent-indigo" data-config="name.first"
+                id="nav-first-name">Tanvir</span>
+            <span class="text-primary" data-config="name.last" id="nav-last-name">Rahman</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-widest text-secondary">
+            <a href="projects.html" class="hover:text-primary transition-colors">Projects</a>
+            <a href="resume.html" class="hover:text-primary transition-colors">Resume</a>
+            <a href="index.html#contact"
+                class="px-5 py-2 rounded-full border border-border-main hover:border-black bg-tertiary/20 transition-all">Contact</a>
+        </div>
+
+        <!-- Mobile menu placeholder -->
+        <button class="md:hidden p-2 group" aria-label="Open menu">
+            <div class="w-6 h-0.5 bg-primary mb-1.5 transition-all duration-300"></div>
+            <div class="w-6 h-0.5 bg-primary transition-all duration-300"></div>
+        </button>
+    </div>
+</nav>

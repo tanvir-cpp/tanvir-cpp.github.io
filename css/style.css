@@ -1,0 +1,266 @@
+/* Global Styles */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: #ffffff;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: 1152px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  font-size: 0.875rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.btn-primary {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: #f4f4f5;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #000000;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(82, 82, 91, 0.1);
+}
+
+.btn-sm {
+  padding: 0.625rem 1.5rem;
+  font-size: 0.75rem;
+}
+
+/* Typography Refinements */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rich Text Formatting for MD Projects */
+.rich-text {
+  font-size: 1.125rem;
+  color: #52525b;
+  font-weight: 300;
+  line-height: 1.625;
+}
+
+.rich-text h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: #000000;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.rich-text h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #000000;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.rich-text p {
+  margin-bottom: 1.5rem;
+}
+
+.rich-text ul,
+.rich-text ol {
+  margin-bottom: 2rem;
+  padding-left: 1.25rem;
+}
+
+.rich-text ul {
+  list-style-type: disc;
+}
+
+.rich-text ol {
+  list-style-type: decimal;
+}
+
+.rich-text li {
+  margin-bottom: 0.75rem;
+}
+
+.rich-text strong {
+  font-weight: 700;
+  color: #000000;
+}
+
+.rich-text code {
+  font-family: "JetBrains Mono", monospace;
+  background-color: #f4f4f5;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #4338ca;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rich-text pre {
+  background-color: rgba(244, 244, 245, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+}
+
+.rich-text pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  color: #18181b;
+  font-size: 0.9em;
+}
+
+.rich-text blockquote {
+  border-left: 4px solid #4338ca;
+  padding-left: 1.5rem;
+  font-style: italic;
+  margin: 2rem 0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.rich-text img {
+  margin: 3rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.rich-text a {
+  color: #4338ca;
+  text-decoration: underline;
+  text-decoration-color: rgba(67, 56, 202, 0.3);
+  text-underline-offset: 4px;
+  transition: all 0.3s;
+}
+
+.rich-text a:hover {
+  text-decoration-color: #4338ca;
+}
+
+/* Resume Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 22pt !important;
+    margin-bottom: 0.2cm !important;
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    margin-top: 0.5cm !important;
+    margin-bottom: 0.3cm !important;
+  }
+  h3 {
+    font-size: 11pt !important;
+  }
+
+  p,
+  li {
+    font-size: 10pt !important;
+    margin-bottom: 0.1cm !important;
+  }
+
+  .grid {
+    display: block !important;
+  }
+
+  .resume-container {
+    padding: 0 !important;
+  }
+
+  .experience-item {
+    page-break-inside: avoid;
+  }
+}
+
+/* Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
