@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research | Tanvir Rahman</title>
+    <meta
+      name="description"
+      content="Selected publications and research in AI, Graphics, and Logic by Tanvir Rahman."
+    />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="src/scripts/tailwind-config.js"></script>
+  </head>
+
+  <body>
+    <div class="scroll-progress-container">
+      <div class="scroll-progress-bar" id="progress-bar"></div>
+    </div>
+    <header class="header"></header>
+
+    <div class="grid-background">
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+      <div class="grid-line"></div>
+    </div>
+
+    <main class="page-container research-page reveal">
+      <div class="container">
+        <header class="page-header">
+          <h1 class="section-title">research.</h1>
+          <p class="section-desc">
+            Selected publications and investigations in AI, Graphics, and Logic.
+          </p>
+        </header>
+
+        <section class="mb-24">
+          <h2
+            class="section-title-small mb-10 text-3xl font-bold tracking-tight text-white"
+          >
+            Technical Reports
+          </h2>
+          <div class="research-list" id="research-list">
+            <div class="loading-indicator">Loading reports...</div>
+          </div>
+        </section>
+
+        <section class="mb-24">
+          <h2
+            class="section-title-small mb-10 text-3xl font-bold tracking-tight text-white"
+          >
+            Curated Bibliography
+          </h2>
+          <div class="research-list" id="recommended-list">
+            <div class="loading-indicator">Loading recommendations...</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer" id="contact"></footer>
+
+    <script type="module" src="src/scripts/main.js"></script>
+  </body>
+</html>

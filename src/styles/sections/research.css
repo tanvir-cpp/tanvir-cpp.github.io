@@ -1,0 +1,10 @@
+/* Research Section */
+.research-page {
+    padding-top: 100px;
+}
+
+/* Custom overrides for research list if needed, otherwise relying on Global Bento Styles */
+.research-list {
+    max-width: 1300px;
+    /* Match global max-width if desired or keep narrower */
+}
