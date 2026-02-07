@@ -174,27 +174,26 @@ img {
 }
 
 .btn-primary {
-  background: var(--white);
-  color: var(--neutral-950);
+  background: var(--black);
+  color: var(--white);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: var(--white);
+  background: var(--neutral-800);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--white);
-  border-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-main);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--bg-tertiary);
+  border-color: var(--border-secondary);
   transform: translateY(-1px);
 }
 

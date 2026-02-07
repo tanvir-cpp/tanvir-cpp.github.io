@@ -8,7 +8,6 @@ import { observeReveal } from "./effects.js";
  */
 // Click listeners removed as projects are now native links
 
-
 export const init = async () => {
   await initHeroBadges();
   await initDynamicContent();
@@ -18,7 +17,7 @@ const initHeroBadges = async () => {
   try {
     const [posts, papers] = await Promise.all([
       model.fetchBlogPosts(),
-      model.fetchResearchPapers()
+      model.fetchResearchPapers(),
     ]);
 
     if (view.elements.latestNoteBadge && posts.length > 0) {
@@ -37,11 +36,19 @@ const initDynamicContent = async () => {
   // 1. Projects (Always load if grid exists)
   if (view.elements.bentoGrid) {
     try {
-      const projects = await model.fetchProjects();
+      let projects = await model.fetchProjects();
+
+      // Feature: Filter homepage to only show featured projects
+      if (view.elements.bentoGrid.id === "featured-projects-grid") {
+        projects = projects.filter((project) => project.featured);
+      }
+
       view.renderProjects(projects);
 
       // Initialize Reveal for project cards
-      document.querySelectorAll("#featured-projects-grid .reveal").forEach(el => observeReveal(el));
+      document
+        .querySelectorAll("#featured-projects-grid .reveal")
+        .forEach((el) => observeReveal(el));
     } catch (error) {
       console.warn("Failed to load projects:", error);
     }
@@ -51,13 +58,16 @@ const initDynamicContent = async () => {
   if (view.elements.researchList || view.elements.recommendedList) {
     try {
       const papers = await model.fetchResearchPapers();
-      const publications = papers.filter(p => !p.type || p.type === 'publication');
-      const recommendations = papers.filter(p => p.type === 'recommendation');
+      const publications = papers.filter(
+        (p) => !p.type || p.type === "publication",
+      );
+      const recommendations = papers.filter((p) => p.type === "recommendation");
 
       if (view.elements.researchList) view.renderResearchList(publications);
-      if (view.elements.recommendedList) view.renderRecommendedList(recommendations);
+      if (view.elements.recommendedList)
+        view.renderRecommendedList(recommendations);
 
-      document.querySelectorAll(".reveal").forEach(el => observeReveal(el));
+      document.querySelectorAll(".reveal").forEach((el) => observeReveal(el));
     } catch (error) {
       console.warn("Failed to load research:", error);
     }
@@ -67,7 +77,9 @@ const initDynamicContent = async () => {
   if (view.elements.latestNotesGrid) {
     const posts = await model.fetchBlogPosts();
     if (posts.length > 0) {
-      const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sortedPosts = [...posts].sort(
+        (a, b) => new Date(b.date) - new Date(a.date),
+      );
       view.renderLatestNotes(sortedPosts.slice(0, 3));
     } else {
       view.renderLatestNotes([]);
@@ -87,5 +99,3 @@ const initDynamicContent = async () => {
     }
   }
 };
-
-
