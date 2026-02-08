@@ -7,16 +7,16 @@ A premium, minimalist portfolio showcasing technical systems engineering and des
 ```text
 /
 ├── index.html              # Main landing page
-├── notes.html              # Technical notes & blog
-├── photography.html        # Photography portfolio
-├── store.html              # Digital products store
+├── about.html              # About page with skills & education
+├── projects.html           # Projects showcase
+├── research.html           # Research papers & publications
+├── contact.html            # Contact information
 ├── src/                    # Source files
 │   ├── assets/             # Static assets (images, docs, fonts)
 │   ├── data/               # Project data (JSON)
 │   ├── scripts/            # Application logic (JS)
 │   └── styles/             # UI styling (CSS)
-├── content/                # Markdown-based content (notes, research)
-└── scripts/                # (Transitional) Build/Sync scripts
+└── content/                # Markdown-based content (research)
 ```
 
 ## 🛠 Tech Stack
@@ -31,4 +31,5 @@ A premium, minimalist portfolio showcasing technical systems engineering and des
 This site is a static multi-page application. Most content is dynamicly loaded from the `src/data` directory to ensure maintainability.
 
 ---
+
 Built with intention by Tanvir Rahman.

@@ -1,0 +1,76 @@
+/* Page-specific inline styles extracted for caching */
+
+/* Index.html - Splash Screen */
+:root {
+  --bg-main: #ffffff;
+  --text-primary: #000000;
+}
+
+body {
+  background: var(--bg-main);
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Lock scroll initially */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+}
+
+/* FIX: Allow scrolling when loaded */
+body.loaded {
+  overflow: auto !important;
+}
+
+.splash-text {
+  font-family: serif;
+  font-size: clamp(3rem, 15vw, 6rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  opacity: 0;
+  animation: initialFade 0.3s ease forwards;
+}
+
+@keyframes initialFade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Projects.html - Grid Section */
+.projects-grid-container {
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+
+/* Contact.html - Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

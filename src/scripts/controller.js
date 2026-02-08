@@ -15,14 +15,7 @@ export const init = async () => {
 
 const initHeroBadges = async () => {
   try {
-    const [posts, papers] = await Promise.all([
-      model.fetchBlogPosts(),
-      model.fetchResearchPapers(),
-    ]);
-
-    if (view.elements.latestNoteBadge && posts.length > 0) {
-      view.renderLatestNoteBadge(posts[0]);
-    }
+    const papers = await model.fetchResearchPapers();
 
     if (view.elements.latestResearchBadge && papers.length > 0) {
       view.renderLatestResearchBadge(papers[0]);
@@ -70,32 +63,6 @@ const initDynamicContent = async () => {
       document.querySelectorAll(".reveal").forEach((el) => observeReveal(el));
     } catch (error) {
       console.warn("Failed to load research:", error);
-    }
-  }
-
-  // Feature: Latest Notes Section (Footer Preview)
-  if (view.elements.latestNotesGrid) {
-    const posts = await model.fetchBlogPosts();
-    if (posts.length > 0) {
-      const sortedPosts = [...posts].sort(
-        (a, b) => new Date(b.date) - new Date(a.date),
-      );
-      view.renderLatestNotes(sortedPosts.slice(0, 3));
-    } else {
-      view.renderLatestNotes([]);
-    }
-  }
-
-  // Initial render - fetch then render
-  if (view.elements.blogList) {
-    try {
-      const posts = await model.fetchBlogPosts();
-      view.renderBlogList(posts);
-      document.querySelectorAll(".blog-item.reveal").forEach((el) => {
-        observeReveal(el);
-      });
-    } catch (error) {
-      console.error("Failed to initialize blog list:", error);
     }
   }
 };

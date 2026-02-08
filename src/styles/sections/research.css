@@ -1,10 +1,181 @@
 /* Research Section */
 .research-page {
-    padding-top: 100px;
+  padding-top: 100px;
 }
 
-/* Custom overrides for research list if needed, otherwise relying on Global Bento Styles */
-.research-list {
-    max-width: 1300px;
-    /* Match global max-width if desired or keep narrower */
+/* ═══════════════════════════════════════════
+   RESEARCH LIST — Clean editorial rows
+   ═══════════════════════════════════════════ */
+.research-items {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-main);
+}
+
+.research-item {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  gap: var(--space-6);
+  align-items: start;
+  padding: var(--space-6) var(--space-4);
+  border-bottom: 1px solid var(--border-main);
+  text-decoration: none;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.research-item:hover {
+  background: rgba(var(--bg-secondary-rgb), 0.4);
+}
+
+/* Meta column */
+.research-item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.research-item-venue {
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-indigo);
+}
+
+.research-item-year {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* Body column */
+.research-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.research-item-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  transition: color 0.3s ease;
+  margin: 0;
+}
+
+.research-item:hover .research-item-title {
+  color: var(--accent-indigo);
+}
+
+.research-item-authors {
+  font-size: var(--text-base);
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.research-item-abstract {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.research-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.research-tag {
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  border: 1px solid var(--border-main);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+}
+
+/* Links column */
+.research-item-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding-top: var(--space-1);
+}
+
+.research-link-label {
+  font-size: 10px;
+  font-weight: var(--font-black);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.research-item:hover .research-link-label {
+  color: var(--accent-indigo);
+}
+
+.research-link-arrow {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-main);
+  transition: all 0.3s ease;
+}
+
+.research-item:hover .research-link-arrow {
+  background: var(--accent-indigo);
+  border-color: var(--accent-indigo);
+  transform: translateX(4px);
+}
+
+.research-link-arrow svg {
+  width: 12px;
+  height: 12px;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.research-item:hover .research-link-arrow svg {
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .research-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-2);
+  }
+
+  .research-item-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .research-item-abstract {
+    display: none;
+  }
+
+  .research-item-links {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }

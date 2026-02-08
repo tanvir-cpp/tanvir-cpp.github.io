@@ -1,3 +1,5 @@
+import { ANIMATION } from "./constants.js";
+
 let _revealObserver = null;
 
 export const initEffects = () => {
@@ -68,7 +70,7 @@ export const initEffects = () => {
   };
 
   _revealObserver = new IntersectionObserver(revealCallback, {
-    threshold: 0.1, // Reduced for better triggering on large sections
+    threshold: ANIMATION.REVEAL_THRESHOLD,
   });
 
   const startObserving = () => {
@@ -90,8 +92,29 @@ export const initEffects = () => {
  * Must call initEffects() first.
  */
 export const observeReveal = (el) => {
-  if (_revealObserver && el) {
-    _revealObserver.observe(el);
+  if (!el) return;
+
+  if (!_revealObserver) {
+    // Fallback: just activate the element immediately
+    el.classList.add("active");
+    return;
+  }
+
+  _revealObserver.observe(el);
+
+  // Check if element is already in viewport - use more lenient check
+  const rect = el.getBoundingClientRect();
+  const windowHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+  const isInViewport =
+    rect.top < windowHeight &&
+    rect.bottom > 0 &&
+    rect.left < windowWidth &&
+    rect.right > 0;
+
+  if (isInViewport) {
+    el.classList.add("active");
   }
 };
-

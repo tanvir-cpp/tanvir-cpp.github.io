@@ -14,8 +14,6 @@ export const headerHTML = `
           <li><a href="about.html" class="nav-link">about</a></li>
           <li><a href="projects.html" class="nav-link">projects</a></li>
           <li><a href="research.html" class="nav-link">research</a></li>
-          <li><a href="notes.html" class="nav-link">notes</a></li>
-          <li><a href="resources.html" class="nav-link">resources</a></li>
           <li><a href="contact.html" class="nav-link">contact</a></li>
         </ul>
 
@@ -32,8 +30,6 @@ export const headerHTML = `
         <a href="about.html" class="mobile-nav-link">about</a>
         <a href="projects.html" class="mobile-nav-link">projects</a>
         <a href="research.html" class="mobile-nav-link">research</a>
-        <a href="notes.html" class="mobile-nav-link">notes</a>
-        <a href="resources.html" class="mobile-nav-link">resources</a>
         <a href="contact.html" class="mobile-nav-link">contact</a>
       </div>
     </div>

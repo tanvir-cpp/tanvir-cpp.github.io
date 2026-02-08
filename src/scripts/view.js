@@ -19,7 +19,6 @@ export const refreshElements = () => {
   elements.resumeBtn = document.getElementById("resume-btn");
 
   // Hero Badges
-  elements.latestNoteBadge = document.getElementById("latest-note-badge");
   elements.latestResearchBadge = document.getElementById(
     "latest-research-badge",
   );
@@ -32,24 +31,12 @@ export const refreshElements = () => {
   elements.researchList = document.getElementById("research-list");
   elements.recommendedList = document.getElementById("recommended-list");
   elements.educationList = document.getElementById("education-list");
-  elements.latestNotesGrid = document.querySelector(".latest-notes-grid");
-  elements.blogList = document.getElementById("blog-list");
   elements.aboutLead = document.getElementById("about-lead");
   elements.aboutBio = document.getElementById("about-bio");
 };
 
 // Initial run
 refreshElements();
-
-export const renderLatestNoteBadge = (note) => {
-  if (!elements.latestNoteBadge || !note) return;
-
-  const badgeText = elements.latestNoteBadge.querySelector(".badge-text");
-  if (badgeText) badgeText.innerText = note.title;
-
-  elements.latestNoteBadge.href = `notes.html#${note.id}`;
-  elements.latestNoteBadge.classList.remove("hidden");
-};
 
 export const renderLatestResearchBadge = (paper) => {
   if (!elements.latestResearchBadge || !paper) return;
@@ -108,6 +95,25 @@ export const triggerConfetti = () => {
 export const renderProjects = (projects) => {
   if (!elements.bentoGrid || !projects) return;
 
+  // Update project count badge
+  const countEl = document.getElementById("project-count");
+  if (countEl) countEl.textContent = `${projects.length} Projects`;
+
+  // Render featured cards (separate grid on projects page)
+  const featuredGrid = document.getElementById("projects-featured-grid");
+  if (featuredGrid) {
+    const featured = projects.filter((p) => p.featured);
+    if (featured.length > 0) {
+      featuredGrid.innerHTML = featured
+        .map((project, i) => templates.featuredCard(project, i))
+        .join("");
+    } else {
+      // Hide the featured section if no featured projects
+      const featuredSection = featuredGrid.closest("section");
+      if (featuredSection) featuredSection.style.display = "none";
+    }
+  }
+
   if (projects.length === 0) {
     elements.bentoGrid.innerHTML = `
       <div class="col-span-full py-12 text-center text-secondary/40 font-mono text-sm capitalize">
@@ -128,20 +134,6 @@ export const renderSkills = (skills) => {
   elements.skillsGrid.innerHTML = skills
     .map((group) => templates.skillGroup(group))
     .join("");
-};
-
-export const applyTheme = (theme) => {
-  document.documentElement.dataset.theme = theme;
-
-  // Update hljs theme dynamically
-  const hljsThemeLink = document.getElementById("hljs-theme");
-  if (hljsThemeLink) {
-    const themePath =
-      theme === "light"
-        ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
-        : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css";
-    hljsThemeLink.setAttribute("href", themePath);
-  }
 };
 
 export const renderCertifications = (certifications) => {
@@ -189,40 +181,37 @@ export const renderResearchList = (papers) => {
     return;
   }
 
-  // Use List View from Projects (Global Style)
   elements.researchList.innerHTML = `
-    <div class="bento-grid list-view">
+    <div class="research-items">
         ${papers
           .map(
             (paper, index) => `
-            <div class="bento-card reveal" style="transition-delay: ${index * 100}ms">
-                <!-- Col 1: Meta -->
-                <div class="bento-header">
-                    <span class="bento-tag">${paper.venue}</span>
-                    <span class="bento-desc" style="font-family: var(--font-mono); font-size: 0.8rem;">${paper.year}</span>
+            <a href="${Object.values(paper.links)[0] || "#"}" target="_blank" class="research-item reveal" style="transition-delay: ${index * 100}ms; text-decoration: none;">
+                <div class="research-item-meta">
+                    <span class="research-item-venue">${paper.venue}</span>
+                    <span class="research-item-year">${paper.year}</span>
                 </div>
-
-                <!-- Col 2: Main Content -->
-                <div class="bento-content">
-                    <h3 class="bento-title">${paper.title}</h3>
-                    <p class="bento-desc" style="font-style: italic; margin-bottom: 0.5rem;">${paper.authors}</p>
-                    <p class="bento-desc">${paper.abstract}</p>
-                    <div class="flex gap-2 mt-2">
-                        ${paper.tags.map((tag) => `<span class="text-xs border border-neutral-800 px-2 py-1 rounded-full text-neutral-500 uppercase tracking-wider">${tag}</span>`).join("")}
+                <div class="research-item-body">
+                    <h3 class="research-item-title">${paper.title}</h3>
+                    <p class="research-item-authors">${paper.authors}</p>
+                    <p class="research-item-abstract">${paper.abstract}</p>
+                    <div class="research-item-tags">
+                        ${paper.tags.map((tag) => `<span class="research-tag">${tag}</span>`).join("")}
                     </div>
                 </div>
-
-                <!-- Col 3: Link -->
-                <div class="flex flex-col gap-2 items-end justify-center">
+                <div class="research-item-links">
                      ${Object.entries(paper.links)
                        .map(
                          ([label, url]) => `
-                        <a href="${url}" target="_blank" class="bento-link text-sm">${label}</a>
+                        <span class="research-link-label">${label}</span>
                      `,
                        )
                        .join("")}
+                    <span class="research-link-arrow">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </span>
                 </div>
-            </div>
+            </a>
         `,
           )
           .join("")}
@@ -291,41 +280,6 @@ export const renderEducation = (education) => {
     )
     .join("");
 };
-
-export const renderLatestNotes = (posts) => {
-  if (!elements.latestNotesGrid || !posts) return;
-
-  if (posts.length === 0) {
-    elements.latestNotesGrid.innerHTML =
-      '<p class="loading-indicator">No notes found.</p>';
-    return;
-  }
-
-  elements.latestNotesGrid.innerHTML = posts
-    .map((post) => templates.card(post, "note"))
-    .join("");
-
-  // Initialize Reveal for note cards
-  elements.latestNotesGrid.querySelectorAll(".reveal").forEach((el) => {
-    import("./effects.js").then(({ observeReveal }) => observeReveal(el));
-  });
-};
-
-export const renderBlogList = (posts) => {
-  if (!elements.blogList || !posts) return;
-
-  if (posts.length === 0) {
-    elements.blogList.innerHTML =
-      '<p class="loading-indicator">No notes found.</p>';
-    return;
-  }
-
-  elements.blogList.innerHTML = posts
-    .map((post) => templates.card(post, "note"))
-    .join("");
-};
-
-// Resources logic moved to resourcesView.js
 
 export const renderAbout = (aboutData) => {
   if (!aboutData) {

@@ -79,76 +79,58 @@ export const certification = (cert, index = 0) => {
 };
 
 /**
- * Polymorphic Card Component
- * Supports Bento (Project), Note, and Resource layouts.
+ * Card Component - Projects Layout
+ * Renders project cards in bento grid format
  */
-export const card = (data, layout = "note") => {
+export const card = (data, layout = "project") => {
   const { id, title, desc, tag, date, url, thumbnail, readingTime, size } =
     data;
 
-  // 1. PROJECT (BENTO) LAYOUT
-  if (layout === "project") {
-    const sizeMap = { large: "bento-large", wide: "bento-wide" };
-    const sizeClass = sizeMap[size] || "bento-normal";
-    return `
-        <a href="${url}" class="bento-card ${sizeClass} github-project reveal group" data-tilt>
-          <div class="bento-content">
-            <div class="bento-header">
-                <span class="bento-tag">${tag}</span>
-                <h3 class="bento-title group-hover:text-accent-indigo transition-colors">${title}</h3>
-            </div>
-            <p class="bento-desc">${desc}</p>
-            <div class="bento-link group-hover:text-accent-indigo">
-              View Project
-            </div>
+  // PROJECT (BENTO) LAYOUT
+  const sizeMap = { large: "bento-large", wide: "bento-wide" };
+  const sizeClass = sizeMap[size] || "bento-normal";
+  return `
+      <a href="${url}" class="bento-card ${sizeClass} github-project reveal group" data-tilt>
+        <div class="bento-content">
+          <div class="bento-header">
+              <span class="bento-tag">${tag}</span>
+              <h3 class="bento-title group-hover:text-accent-indigo transition-colors">${title}</h3>
           </div>
-          ${data.icon ? `<div class="bento-visual opacity-10 group-hover:opacity-20 transition-opacity">${data.icon}</div>` : ""}
-        </a>
-      `;
-  }
+          <p class="bento-desc">${desc}</p>
+          <div class="bento-link group-hover:text-accent-indigo">
+            <span>View Project</span>
+            <span class="link-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </span>
+          </div>
+        </div>
+        ${data.icon ? `<div class="bento-visual opacity-10 group-hover:opacity-20 transition-opacity">${data.icon}</div>` : ""}
+      </a>
+    `;
+};
 
-  // 2. NOTE (GRID) LAYOUT
-  if (layout === "note") {
-    const displayTag = tag || (data.tags && data.tags[0]) || "Note";
-    return `
-        <a href="notes.html#${id}" class="group relative p-8 bg-secondary/20 border border-main/10 rounded-3xl hover:bg-secondary/40 hover:border-accent-rose/20 transition-all duration-500 reveal">
-          <div class="flex justify-between items-start mb-6">
-            <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-accent-rose/60">${displayTag}</span>
-            <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-secondary/30">${date}</span>
-          </div>
-          <h3 class="text-xl md:text-2xl font-serif italic text-primary group-hover:text-accent-rose transition-colors mb-8">${title}</h3>
-          <div class="flex items-center text-[10px] font-black uppercase tracking-[0.4em] text-primary/40 group-hover:text-primary transition-colors">
-            Read Article <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
-          </div>
-        </a>
-      `;
-  }
-
-  // 3. RESOURCE (LIST) LAYOUT
-  if (layout === "resource") {
-    return `
-        <article class="resource-item group flex flex-col md:flex-row gap-8 py-8 border-b border-main/10 hover:bg-secondary/5 transition-all duration-300 transform reveal" data-resource-id="${id}" role="button" tabindex="0">
-          ${
-            thumbnail
-              ? `
-          <div class="shrink-0 w-full md:w-48 h-32 overflow-hidden rounded-2xl bg-tertiary/10">
-              <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110" loading="lazy" />
-          </div>`
-              : ""
-          }
-          <div class="flex-1 flex flex-col justify-center">
-              <div class="mb-2">
-                <span class="text-[9px] font-black uppercase tracking-[0.4em] text-accent-indigo/60">${tag || "Resource"}</span>
-              </div>
-              <h3 class="text-2xl font-bold tracking-tight text-primary mb-3 group-hover:text-accent-indigo transition-colors">${title}</h3>
-              <p class="text-sm font-light text-secondary/60 leading-relaxed mb-4 max-w-2xl">${desc || readingTime || "A curated resource for developers."}</p>
-              <div class="flex items-center gap-4 text-[9px] font-bold uppercase tracking-[0.3em] text-secondary/30">
-                <span>${date}</span>
-              </div>
-          </div>
-        </article>
-      `;
-  }
+/**
+ * Featured Project Card — Rich card style for projects page
+ */
+export const featuredCard = (data, index = 0) => {
+  const { title, desc, tag, url, icon } = data;
+  return `
+    <a href="${url}" class="project-featured-card reveal" style="transition-delay: ${index * 100}ms">
+      ${icon ? `<div class="card-icon">${icon}</div>` : ""}
+      <div>
+        <div class="card-tag">${tag}</div>
+        <h3 class="card-title">${title}</h3>
+        <p class="card-desc">${desc}</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link-label">View Project</span>
+        <span class="card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </span>
+      </div>
+      ${icon ? `<div class="card-bg-visual">${icon}</div>` : ""}
+    </a>
+  `;
 };
 
 /**
