@@ -1,14 +1,19 @@
 /**
- * Shared Components System
- * Ensures consistent UI across all pages.
+ * Shared Components System (DEPRECATED)
+ *
+ * ⚠️ This file is deprecated. Please use the new modular structure:
+ * import { templates, initComponents } from './ui/index.js';
+ *
+ * See /src/scripts/ui/README.md for migration guide.
+ *
+ * @deprecated Use ./ui/index.js instead
  */
 
 const ICONS = {
-
   map: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
   grad: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
   code: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
-  bolt: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`
+  bolt: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
 };
 
 /**
@@ -19,20 +24,24 @@ export const templates = {
   /**
    * Status/Category Badge
    */
-  badge: (label, type = 'default', extraClass = '') => {
+  badge: (label, type = "default", extraClass = "") => {
     const types = {
-      default: 'bg-tertiary/20 border-main text-secondary/60',
-      success: 'bg-accent-emerald/10 border-accent-emerald/20 text-accent-emerald',
-      accent: 'bg-accent-indigo/10 border-accent-indigo/20 text-accent-indigo',
-      note: 'bg-accent-rose/10 border-accent-rose/20 text-accent-rose',
+      default: "bg-tertiary/20 border-main text-secondary/60",
+      success:
+        "bg-accent-emerald/10 border-accent-emerald/20 text-accent-emerald",
+      accent: "bg-accent-indigo/10 border-accent-indigo/20 text-accent-indigo",
+      note: "bg-accent-rose/10 border-accent-rose/20 text-accent-rose",
     };
 
     const themeClass = types[type] || types.default;
-    const pulse = type === 'success' ? `
+    const pulse =
+      type === "success"
+        ? `
       <span class="relative flex h-2 w-2 mr-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-emerald/40 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-emerald"></span>
-      </span>` : '';
+      </span>`
+        : "";
 
     return `
       <div class="inline-flex items-center px-3 py-1 rounded-full border backdrop-blur-md text-[9px] font-bold uppercase tracking-[0.2em] ${themeClass} ${extraClass}">
@@ -62,8 +71,8 @@ export const templates = {
       <h3 class="skills-cat-title">${group.category}</h3>
       <div class="skills-items">
         ${group.items
-        .map((item) => `<div class="skill-item">${item}</div>`)
-        .join("")}
+          .map((item) => `<div class="skill-item">${item}</div>`)
+          .join("")}
       </div>
     </div>
   `;
@@ -91,11 +100,12 @@ export const templates = {
    * Polymorphic Card Component
    * Supports Bento (Project), Note, and Resource layouts.
    */
-  card: (data, layout = 'note') => {
-    const { id, title, desc, tag, date, url, thumbnail, readingTime, size } = data;
+  card: (data, layout = "note") => {
+    const { id, title, desc, tag, date, url, thumbnail, readingTime, size } =
+      data;
 
     // 1. PROJECT (BENTO) LAYOUT
-    if (layout === 'project') {
+    if (layout === "project") {
       const sizeMap = { large: "bento-large", wide: "bento-wide" };
       const sizeClass = sizeMap[size] || "bento-normal";
       return `
@@ -116,8 +126,8 @@ export const templates = {
     }
 
     // 2. NOTE (GRID) LAYOUT
-    if (layout === 'note') {
-      const displayTag = tag || (data.tags && data.tags[0]) || 'Note';
+    if (layout === "note") {
+      const displayTag = tag || (data.tags && data.tags[0]) || "Note";
       return `
         <a href="notes.html#${id}" class="group relative p-8 bg-secondary/20 border border-main/10 rounded-3xl hover:bg-secondary/40 hover:border-accent-rose/20 transition-all duration-500 reveal">
           <div class="flex justify-between items-start mb-6">
@@ -133,19 +143,23 @@ export const templates = {
     }
 
     // 3. RESOURCE (LIST) LAYOUT
-    if (layout === 'resource') {
+    if (layout === "resource") {
       return `
         <article class="resource-item group flex flex-col md:flex-row gap-8 py-8 border-b border-main/10 hover:bg-secondary/5 transition-all duration-300 transform reveal" data-resource-id="${id}" role="button" tabindex="0">
-          ${thumbnail ? `
+          ${
+            thumbnail
+              ? `
           <div class="shrink-0 w-full md:w-48 h-32 overflow-hidden rounded-2xl bg-tertiary/10">
               <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110" loading="lazy" />
-          </div>` : ""}
+          </div>`
+              : ""
+          }
           <div class="flex-1 flex flex-col justify-center">
               <div class="mb-2">
-                <span class="text-[9px] font-black uppercase tracking-[0.4em] text-accent-indigo/60">${tag || 'Resource'}</span>
+                <span class="text-[9px] font-black uppercase tracking-[0.4em] text-accent-indigo/60">${tag || "Resource"}</span>
               </div>
               <h3 class="text-2xl font-bold tracking-tight text-primary mb-3 group-hover:text-accent-indigo transition-colors">${title}</h3>
-              <p class="text-sm font-light text-secondary/60 leading-relaxed mb-4 max-w-2xl">${desc || readingTime || 'A curated resource for developers.'}</p>
+              <p class="text-sm font-light text-secondary/60 leading-relaxed mb-4 max-w-2xl">${desc || readingTime || "A curated resource for developers."}</p>
               <div class="flex items-center gap-4 text-[9px] font-bold uppercase tracking-[0.3em] text-secondary/30">
                 <span>${date}</span>
               </div>
@@ -153,14 +167,13 @@ export const templates = {
         </article>
       `;
     }
-
   },
 
   /**
    * Loading Skeleton Component
    */
-  skeleton: (type = 'list') => {
-    if (type === 'article') {
+  skeleton: (type = "list") => {
+    if (type === "article") {
       return `
         <div class="animate-pulse space-y-8 max-w-3xl mx-auto">
           <div class="h-12 bg-secondary/40 rounded-xl w-3/4"></div>
@@ -174,13 +187,16 @@ export const templates = {
       `;
     }
     return `<div class="animate-pulse bg-secondary/20 rounded-2xl h-32 w-full"></div>`;
-  }
+  },
 };
 
 const components = {
   header: `
     <nav class="nav container" aria-label="Main Navigation">
-      <a href="index.html" class="nav-logo" aria-label="Tanvir Rahman Home">tanvir.</a>
+      <a href="index.html" class="nav-logo" aria-label="Tanvir Rahman Home">
+        <span class="logo-mark">T</span>
+        <span class="logo-text">R</span>
+      </a>
       <div class="nav-right">
         <ul class="nav-list" role="list">
           <li><a href="about.html" class="nav-link">about</a></li>
@@ -212,31 +228,25 @@ const components = {
   `,
 
   footer: `
-    <div class="relative py-24 overflow-hidden bg-main font-sans">
+    <div class="relative overflow-hidden bg-main font-sans section-padding">
       <!-- Ghost Typography (Dynamic Theme Opacity) -->
       <div class="absolute bottom-[-5%] left-[-2%] z-0 select-none pointer-events-none opacity-[0.06] dark:opacity-[0.02]">
         <h2 class="text-[12rem] md:text-[18rem] font-serif italic tracking-tighter leading-none">tanvir</h2>
       </div>
 
-      <!-- Atmospheric Overlay (High Clarity) -->
-      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-no-repeat bg-right bg-contain opacity-[0.4] dark:opacity-[0.25] grayscale mix-blend-multiply dark:mix-blend-luminosity transition-opacity duration-1000" style="background-image: url('./src/assets/images/footerbg.jpg')"></div>
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent via-main/20 to-main/95"></div>
-      </div>
+      <div class="container relative z-10 mx-auto max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
 
-      <div class="container relative z-10 mx-auto px-6 max-w-7xl">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          
           <!-- Brand & Mission (Compact) -->
-          <div class="lg:col-span-6 space-y-8">
+          <div class="lg:col-span-6 space-y-6">
             <div class="space-y-4">
               <a href="index.html" class="text-5xl font-serif italic tracking-tighter text-primary hover:text-accent-indigo transition-all duration-500">tanvir<span class="text-accent-indigo">.</span></a>
               <p class="text-lg md:text-xl font-light text-primary/90 leading-snug tracking-tight max-w-md">
                 Architecting the <span class="italic text-accent-indigo font-serif">invisible systems</span> powering the web.
               </p>
             </div>
-            
-            <div class="flex flex-col space-y-3">
+
+            <div class="flex flex-col space-y-4">
                <div class="flex items-center gap-3">
                  <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
                  <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-secondary/60">Currently in Dhaka, BD</span>
@@ -248,19 +258,19 @@ const components = {
           </div>
 
           <!-- Quick Access Grid -->
-          <div class="lg:col-span-6 grid grid-cols-3 gap-4 lg:gap-8">
-            <div class="space-y-6">
+          <div class="lg:col-span-6 grid grid-cols-3 gap-6 lg:gap-8">
+            <div class="space-y-4">
               <h4 class="text-[9px] font-bold uppercase tracking-[0.5em] text-secondary/30">Explore</h4>
-              <ul class="flex flex-col gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-secondary/80">
+              <ul class="flex flex-col gap-3 text-[11px] font-bold uppercase tracking-[0.15em] text-secondary/80">
                 <li><a href="about.html" class="hover:text-primary transition-all">About</a></li>
                 <li><a href="projects.html" class="hover:text-primary transition-all">Projects</a></li>
                 <li><a href="notes.html" class="hover:text-primary transition-all">Writing</a></li>
               </ul>
             </div>
 
-            <div class="space-y-6">
+            <div class="space-y-4">
               <h4 class="text-[9px] font-bold uppercase tracking-[0.5em] text-secondary/30">Social</h4>
-              <ul class="flex flex-col gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-secondary/80">
+              <ul class="flex flex-col gap-3 text-[11px] font-bold uppercase tracking-[0.15em] text-secondary/80">
                 <li>
                   <a href="https://github.com/taanvirrahman" class="group flex items-center gap-2 hover:text-primary transition-all">
                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
@@ -282,9 +292,9 @@ const components = {
               </ul>
             </div>
 
-            <div class="space-y-6">
+            <div class="space-y-4">
               <h4 class="text-[9px] font-bold uppercase tracking-[0.5em] text-secondary/30">Library</h4>
-              <ul class="flex flex-col gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-secondary/80">
+              <ul class="flex flex-col gap-3 text-[11px] font-bold uppercase tracking-[0.15em] text-secondary/80">
                 <li><a href="resources.html" class="hover:text-primary transition-all">Resources</a></li>
               </ul>
             </div>
@@ -293,19 +303,19 @@ const components = {
         </div>
 
         <!-- Meta Strip -->
-         <div class="mt-20 pt-8 border-t border-main/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex gap-8">
+         <div class="mt-16 pt-8 border-t border-main/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex gap-6">
               <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-secondary/20">© ${new Date().getFullYear()} TANVIR</span>
             </div>
          </div>
       </div>
     </div>
-  `
+  `,
 };
 
 export const initComponents = () => {
-  const header = document.querySelector('.header');
-  const footer = document.querySelector('.footer');
+  const header = document.querySelector(".header");
+  const footer = document.querySelector(".footer");
 
   if (header) {
     header.innerHTML = components.header;
@@ -319,63 +329,65 @@ export const initComponents = () => {
 };
 
 const initMobileMenu = () => {
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileNav = document.getElementById('mobile-nav');
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const mobileNav = document.getElementById("mobile-nav");
 
   if (!menuBtn || !mobileNav) return;
 
   const toggleMenu = (forceClose = null) => {
-    const isNowActive = forceClose === null
-      ? !mobileNav.classList.contains('active')
-      : !forceClose;
+    const isNowActive =
+      forceClose === null
+        ? !mobileNav.classList.contains("active")
+        : !forceClose;
 
-    menuBtn.setAttribute('aria-expanded', isNowActive);
-    menuBtn.classList.toggle('active', isNowActive);
-    mobileNav.classList.toggle('active', isNowActive);
-    document.body.style.overflow = isNowActive ? 'hidden' : '';
+    menuBtn.setAttribute("aria-expanded", isNowActive);
+    menuBtn.classList.toggle("active", isNowActive);
+    mobileNav.classList.toggle("active", isNowActive);
+    document.body.style.overflow = isNowActive ? "hidden" : "";
   };
 
-  menuBtn.addEventListener('click', () => toggleMenu());
+  menuBtn.addEventListener("click", () => toggleMenu());
 
   // Close menu when a link is clicked
-  const mobileLinks = mobileNav.querySelectorAll('.mobile-nav-link');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => toggleMenu(true));
+  const mobileLinks = mobileNav.querySelectorAll(".mobile-nav-link");
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => toggleMenu(true));
   });
 
   // Close on ESC key
-  globalThis.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+  globalThis.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileNav.classList.contains("active")) {
       toggleMenu(true);
     }
   });
 };
 
 const setActiveNavLink = () => {
-  const currentPath = globalThis.location.pathname.split('/').pop() || 'index.html';
-  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  const currentPath =
+    globalThis.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
 
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href");
     if (!href) return;
 
-    const hrefBase = href.split('#')[0];
+    const hrefBase = href.split("#")[0];
     let isActive = false;
 
     // Home logic
-    if (hrefBase === 'index.html' || hrefBase === '') {
-      isActive = (currentPath === 'index.html' || currentPath === '');
+    if (hrefBase === "index.html" || hrefBase === "") {
+      isActive = currentPath === "index.html" || currentPath === "";
     } else {
       // Default exact match
-      isActive = (hrefBase === currentPath);
+      isActive = hrefBase === currentPath;
     }
 
     if (isActive) {
-      link.classList.add('active');
-      link.setAttribute('aria-current', 'page');
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
     } else {
-      link.classList.remove('active');
-      link.removeAttribute('aria-current');
+      link.classList.remove("active");
+      link.removeAttribute("aria-current");
     }
   });
 };

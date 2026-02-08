@@ -1,51 +1,51 @@
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-12) var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-8) var(--space-6);
 }
 
 .skills-category {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: flex-start;
 }
 
 .skills-cat-title {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
-    color: var(--text-muted);
-    font-weight: var(--font-semibold);
-    margin-bottom: var(--space-2);
-    font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-muted);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-2);
+  font-style: normal;
 }
 
 .skills-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-start;
 }
 
 .skill-item {
-    font-size: var(--text-sm);
-    padding: var(--space-2) var(--space-3);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-main);
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
-    transition: var(--transition-fast);
-    cursor: default;
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  transition: var(--transition-fast);
+  cursor: default;
 }
 
 .skill-item:hover {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
-    background: var(--bg-tertiary);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
 }
 
-/* Add specialized colors for hover states based on category if possible, 
+/* Add specialized colors for hover states based on category if possible,
    but for now we stick to a unified premium theme */

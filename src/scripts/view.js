@@ -1,4 +1,4 @@
-import { templates } from "./components.js";
+import { templates } from "./ui/index.js";
 
 export const elements = {};
 
@@ -15,13 +15,14 @@ if (typeof marked !== "undefined" && typeof hljs !== "undefined") {
   });
 }
 
-
 export const refreshElements = () => {
   elements.resumeBtn = document.getElementById("resume-btn");
 
   // Hero Badges
   elements.latestNoteBadge = document.getElementById("latest-note-badge");
-  elements.latestResearchBadge = document.getElementById("latest-research-badge");
+  elements.latestResearchBadge = document.getElementById(
+    "latest-research-badge",
+  );
 
   // Core Grids
   elements.bentoGrid = document.querySelector(".bento-grid");
@@ -40,7 +41,6 @@ export const refreshElements = () => {
 // Initial run
 refreshElements();
 
-
 export const renderLatestNoteBadge = (note) => {
   if (!elements.latestNoteBadge || !note) return;
 
@@ -57,11 +57,10 @@ export const renderLatestResearchBadge = (paper) => {
   const badgeText = elements.latestResearchBadge.querySelector(".badge-text");
   if (badgeText) badgeText.innerText = paper.title;
 
-  elements.latestResearchBadge.href = paper.links?.PDF || paper.links?.Code || "research.html";
+  elements.latestResearchBadge.href =
+    paper.links?.PDF || paper.links?.Code || "research.html";
   elements.latestResearchBadge.classList.remove("hidden");
 };
-
-
 
 export const triggerConfetti = () => {
   const duration = 2.5 * 1000;
@@ -105,11 +104,9 @@ export const triggerConfetti = () => {
       requestAnimationFrame(frame);
     }
   })();
-
 };
 export const renderProjects = (projects) => {
   if (!elements.bentoGrid || !projects) return;
-
 
   if (projects.length === 0) {
     elements.bentoGrid.innerHTML = `
@@ -121,7 +118,7 @@ export const renderProjects = (projects) => {
   }
 
   elements.bentoGrid.innerHTML = projects
-    .map((project) => templates.card(project, 'project'))
+    .map((project) => templates.card(project, "project"))
     .join("");
 };
 
@@ -147,13 +144,12 @@ export const applyTheme = (theme) => {
   }
 };
 
-
 export const renderCertifications = (certifications) => {
   if (!elements.certificationsGrid || !certifications) return;
 
   // Ensure we keep the grid class and don't overwrite it with list
-  if (!elements.certificationsGrid.classList.contains('certifications-list')) {
-    elements.certificationsGrid.classList.add('certifications-list');
+  if (!elements.certificationsGrid.classList.contains("certifications-list")) {
+    elements.certificationsGrid.classList.add("certifications-list");
   }
 
   elements.certificationsGrid.innerHTML = certifications
@@ -196,32 +192,40 @@ export const renderResearchList = (papers) => {
   // Use List View from Projects (Global Style)
   elements.researchList.innerHTML = `
     <div class="bento-grid list-view">
-        ${papers.map((paper, index) => `
+        ${papers
+          .map(
+            (paper, index) => `
             <div class="bento-card reveal" style="transition-delay: ${index * 100}ms">
                 <!-- Col 1: Meta -->
                 <div class="bento-header">
                     <span class="bento-tag">${paper.venue}</span>
                     <span class="bento-desc" style="font-family: var(--font-mono); font-size: 0.8rem;">${paper.year}</span>
                 </div>
-                
+
                 <!-- Col 2: Main Content -->
                 <div class="bento-content">
                     <h3 class="bento-title">${paper.title}</h3>
                     <p class="bento-desc" style="font-style: italic; margin-bottom: 0.5rem;">${paper.authors}</p>
                     <p class="bento-desc">${paper.abstract}</p>
                     <div class="flex gap-2 mt-2">
-                        ${paper.tags.map(tag => `<span class="text-xs border border-neutral-800 px-2 py-1 rounded-full text-neutral-500 uppercase tracking-wider">${tag}</span>`).join('')}
+                        ${paper.tags.map((tag) => `<span class="text-xs border border-neutral-800 px-2 py-1 rounded-full text-neutral-500 uppercase tracking-wider">${tag}</span>`).join("")}
                     </div>
                 </div>
 
                 <!-- Col 3: Link -->
                 <div class="flex flex-col gap-2 items-end justify-center">
-                     ${Object.entries(paper.links).map(([label, url]) => `
+                     ${Object.entries(paper.links)
+                       .map(
+                         ([label, url]) => `
                         <a href="${url}" target="_blank" class="bento-link text-sm">${label}</a>
-                     `).join('')}
+                     `,
+                       )
+                       .join("")}
                 </div>
             </div>
-        `).join("")}
+        `,
+          )
+          .join("")}
     </div>
   `;
 };
@@ -238,22 +242,26 @@ export const renderRecommendedList = (items) => {
   // Use Standard Bento Grid (Global Style)
   elements.recommendedList.innerHTML = `
     <div class="bento-grid">
-        ${items.map((item, index) => `
-            <a href="${item.links.read || item.links.paper || '#'}" target="_blank" class="bento-card reveal group" style="transition-delay: ${index * 100}ms; text-decoration: none;">
+        ${items
+          .map(
+            (item, index) => `
+            <a href="${item.links.read || item.links.paper || "#"}" target="_blank" class="bento-card reveal group" style="transition-delay: ${index * 100}ms; text-decoration: none;">
                 <div class="bento-content">
                     <div class="flex justify-between items-start">
-                        <span class="bento-tag">${item.venue || 'Read'}</span>
+                        <span class="bento-tag">${item.venue || "Read"}</span>
                         <span class="text-neutral-600 font-mono text-xs">${item.year}</span>
                     </div>
-                    
+
                     <h3 class="bento-title group-hover:text-white transition-colors">${item.title}</h3>
                     <p class="bento-desc text-sm">by ${item.authors}</p>
                     <p class="bento-desc line-clamp-3">${item.abstract}</p>
-                    
+
                     <div class="bento-link mt-auto group-hover:translate-x-1 transition-transform">Read Now</div>
                 </div>
             </a>
-        `).join("")}
+        `,
+          )
+          .join("")}
     </div>
   `;
 };
@@ -284,17 +292,17 @@ export const renderEducation = (education) => {
     .join("");
 };
 
-
 export const renderLatestNotes = (posts) => {
   if (!elements.latestNotesGrid || !posts) return;
 
   if (posts.length === 0) {
-    elements.latestNotesGrid.innerHTML = '<p class="loading-indicator">No notes found.</p>';
+    elements.latestNotesGrid.innerHTML =
+      '<p class="loading-indicator">No notes found.</p>';
     return;
   }
 
   elements.latestNotesGrid.innerHTML = posts
-    .map((post) => templates.card(post, 'note'))
+    .map((post) => templates.card(post, "note"))
     .join("");
 
   // Initialize Reveal for note cards
@@ -307,19 +315,19 @@ export const renderBlogList = (posts) => {
   if (!elements.blogList || !posts) return;
 
   if (posts.length === 0) {
-    elements.blogList.innerHTML = '<p class="loading-indicator">No notes found.</p>';
+    elements.blogList.innerHTML =
+      '<p class="loading-indicator">No notes found.</p>';
     return;
   }
 
   elements.blogList.innerHTML = posts
-    .map((post) => templates.card(post, 'note'))
+    .map((post) => templates.card(post, "note"))
     .join("");
 };
 
 // Resources logic moved to resourcesView.js
 
 export const renderAbout = (aboutData) => {
-
   if (!aboutData) {
     console.error("No about data provided");
     return;
@@ -344,5 +352,3 @@ export const renderAbout = (aboutData) => {
       .join("");
   }
 };
-
-

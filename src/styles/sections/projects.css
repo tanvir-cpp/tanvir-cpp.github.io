@@ -122,7 +122,7 @@
   aspect-ratio: auto;
   align-items: flex-start;
   text-align: left;
-  padding: var(--space-8) 0;
+  padding: var(--space-6) 0;
   background: transparent;
   border-bottom: 1px solid var(--border-main);
 }
@@ -143,9 +143,9 @@
 }
 
 .bento-grid.list-view .bento-title {
-  font-size: var(--text-3xl);
+  font-size: var(--text-xl);
   text-transform: none;
-  letter-spacing: var(--tracking-tighter);
+  letter-spacing: var(--tracking-tight);
 }
 
 .bento-grid.list-view .bento-desc {
@@ -190,6 +190,6 @@
 
 @media (min-width: 768px) {
   .bento-grid.list-view .bento-card {
-    padding: var(--space-12) 0;
+    padding: var(--space-8) 0;
   }
 }
