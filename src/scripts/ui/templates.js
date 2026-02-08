@@ -4,47 +4,6 @@
  */
 
 /**
- * Status/Category Badge
- */
-export const badge = (label, type = "default", extraClass = "") => {
-  const types = {
-    default: "bg-tertiary/20 border-main text-secondary/60",
-    success:
-      "bg-accent-emerald/10 border-accent-emerald/20 text-accent-emerald",
-    accent: "bg-accent-indigo/10 border-accent-indigo/20 text-accent-indigo",
-    note: "bg-accent-rose/10 border-accent-rose/20 text-accent-rose",
-  };
-
-  const themeClass = types[type] || types.default;
-  const pulse =
-    type === "success"
-      ? `
-      <span class="relative flex h-2 w-2 mr-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-emerald/40 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-emerald"></span>
-      </span>`
-      : "";
-
-  return `
-      <div class="inline-flex items-center px-3 py-1 rounded-full border backdrop-blur-md text-[9px] font-bold uppercase tracking-[0.2em] ${themeClass} ${extraClass}">
-        ${pulse}${label}
-      </div>
-    `;
-};
-
-/**
- * Quick Fact / Stat Card - Minimal Horizontal Design
- */
-export const fact = (fact, index = 0) => {
-  return `
-          <div class="group py-5 md:py-6 px-4 md:px-6 text-center transition-all duration-500 reveal hover:bg-secondary/20" style="transition-delay: ${index * 100}ms">
-              <p class="text-base md:text-lg lg:text-xl font-semibold text-primary tracking-tight mb-1 group-hover:text-accent-indigo transition-colors">${fact.value}</p>
-              <h3 class="text-[8px] md:text-[9px] font-medium text-secondary/40 uppercase tracking-[0.2em]">${fact.label}</h3>
-          </div>
-        `;
-};
-
-/**
  * Skill Category Group
  */
 export const skillGroup = (group) => {
@@ -131,24 +90,4 @@ export const featuredCard = (data, index = 0) => {
       ${icon ? `<div class="card-bg-visual">${icon}</div>` : ""}
     </a>
   `;
-};
-
-/**
- * Loading Skeleton Component
- */
-export const skeleton = (type = "list") => {
-  if (type === "article") {
-    return `
-        <div class="animate-pulse space-y-8 max-w-3xl mx-auto">
-          <div class="h-12 bg-secondary/40 rounded-xl w-3/4"></div>
-          <div class="space-y-3">
-             <div class="h-4 bg-secondary/20 rounded w-full"></div>
-             <div class="h-4 bg-secondary/20 rounded w-5/6"></div>
-             <div class="h-4 bg-secondary/20 rounded w-4/6"></div>
-          </div>
-          <div class="h-64 bg-secondary/20 rounded-3xl w-full"></div>
-        </div>
-      `;
-  }
-  return `<div class="animate-pulse bg-secondary/20 rounded-2xl h-32 w-full"></div>`;
 };

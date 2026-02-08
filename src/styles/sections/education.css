@@ -11,25 +11,13 @@
   position: relative;
 }
 
-/* Vertical Timeline Line */
-/* Vertical Timeline Line Removed */
-.education-list::before {
-  display: none;
-}
-
 .education-item {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5rem;
   padding-bottom: 1.25rem;
-  /* Border removed for cleaner look */
   position: relative;
   transition: all 0.2s ease;
-}
-
-/* Timeline Dot Removed */
-.education-item::before {
-  display: none;
 }
 
 .education-item:hover {
@@ -123,6 +111,5 @@
 
   .education-item:hover {
     transform: translateY(-5px);
-    transform: translateX(0);
   }
 }

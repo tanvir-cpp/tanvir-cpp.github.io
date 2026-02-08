@@ -65,7 +65,6 @@
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   max-width: 100%;
-  /* Prevent overflow */
 }
 
 .hero-badge:hover {
@@ -77,7 +76,6 @@
 
 .badge-label {
   background: var(--text-primary);
-  /* High contrast */
   color: var(--bg-main);
   font-size: 0.65rem;
   font-weight: 700;
@@ -96,18 +94,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
-  /* Truncate widely long titles */
 }
 
 @media (max-width: 480px) {
   .badge-text {
     max-width: 140px;
-    /* More aggressive truncation on mobile */
   }
 }
 
 .hero-title {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif);
   font-size: clamp(4.5rem, 12vw, 8.5rem);
   font-weight: 400;
   font-style: italic;
@@ -116,10 +112,17 @@
   color: var(--text-primary);
   margin-bottom: 2rem;
   position: relative;
-  /* Clean white/dark text, removing complex gradient for sharper serif look */
-  background: none;
-  -webkit-text-fill-color: initial;
-  background-clip: border-box;
+}
+
+.hero-name {
+  background: linear-gradient(
+    135deg,
+    var(--accent-indigo),
+    var(--accent-violet)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
@@ -136,6 +139,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 @media (max-width: 1024px) {

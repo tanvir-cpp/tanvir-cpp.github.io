@@ -147,27 +147,19 @@
             </div>
 
             <!-- Title -->
-            <h1
-              class="text-6xl md:text-8xl lg:text-[112px] font-extrabold tracking-tight leading-[0.85] text-primary mb-8 hero-title reveal"
-            >
-              hey, i'm
-              <span
-                class="bg-gradient-to-r from-accent-indigo to-accent-violet bg-clip-text text-transparent italic font-serif font-light opacity-90"
-                >tanvir</span
-              >.
+            <h1 class="hero-title reveal">
+              hey, i'm <span class="hero-name">tanvir</span>.
             </h1>
 
             <!-- Description -->
-            <p
-              class="text-xl md:text-3xl text-secondary max-w-2xl font-light leading-relaxed mb-10 slide-up-3"
-            >
+            <p class="hero-description reveal">
               Computer Science and Engineering student at AIUB, fascinated by
               modern technologies to solve complex problems. Interested in web
               development, databases, AI, and Machine Learning.
             </p>
 
             <!-- Actions -->
-            <div class="flex flex-wrap items-center gap-4 hero-actions reveal">
+            <div class="hero-actions reveal">
               <a
                 href="src/assets/docs/tanvir-rahman-resume.pdf"
                 target="_blank"
@@ -191,6 +183,135 @@
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
               </a>
+              <a href="projects.html" class="btn btn-secondary group">
+                <span>View Projects</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="transition-transform group-hover:translate-x-0.5"
+                >
+                  <path d="M5 12h14m-7-7 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Teaser -->
+    <section class="section-padding bg-main relative z-10" id="about-teaser">
+      <div class="container">
+        <div class="about-teaser-grid">
+          <div class="about-teaser-content">
+            <p
+              class="text-[10px] font-bold text-accent-indigo uppercase tracking-[0.4em] mb-4"
+            >
+              About
+            </p>
+            <h2
+              class="text-3xl md:text-5xl font-bold tracking-tighter text-primary leading-none mb-6"
+            >
+              A little about
+              <span class="font-serif italic font-light text-accent-indigo"
+                >me</span
+              >.
+            </h2>
+            <p class="text-base md:text-lg text-secondary leading-relaxed mb-4">
+              I'm a Computer Science and Engineering student at
+              <strong
+                >American International University-Bangladesh (AIUB)</strong
+              >, seeking opportunities to apply technical skills in web
+              development, databases, and programming.
+            </p>
+            <p class="text-base md:text-lg text-secondary leading-relaxed mb-8">
+              Interested in Artificial Intelligence, Machine Learning, Cloud
+              Computing, and System Design.
+            </p>
+            <a
+              href="about.html"
+              class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-secondary hover:text-accent-indigo transition-colors"
+            >
+              Read more about me
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14m-7-7 7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <div class="about-teaser-facts">
+            <div class="fact-card reveal">
+              <div class="fact-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="fact-label">Location</div>
+              <div class="fact-value">Dhaka, Bangladesh</div>
+            </div>
+            <div class="fact-card reveal">
+              <div class="fact-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </div>
+              <div class="fact-label">Education</div>
+              <div class="fact-value">BSc CSE, AIUB</div>
+            </div>
+            <div class="fact-card reveal">
+              <div class="fact-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div class="fact-label">Focus</div>
+              <div class="fact-value">Software Development</div>
             </div>
           </div>
         </div>
@@ -224,36 +345,98 @@
             >View full index →</a
           >
         </div>
-        <!-- Bento Grid - Rendered via JS -->
-        <div class="max-w-4xl mx-auto px-0">
-          <div class="bento-grid" id="featured-projects-grid">
-            <!-- JS populates this -->
+        <!-- Featured Projects Grid - Rendered via JS -->
+        <div class="home-projects-grid" id="featured-projects-grid">
+          <!-- JS populates this -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section
+      class="section-padding bg-main relative z-10 border-t border-[var(--border-main)]"
+      id="skills-section"
+    >
+      <div class="container">
+        <div
+          class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6"
+        >
+          <div class="max-w-xl">
+            <p
+              class="text-[10px] font-bold text-accent-indigo uppercase tracking-[0.4em] mb-4"
+            >
+              Skills
+            </p>
+            <h2
+              class="text-4xl md:text-6xl font-bold tracking-tighter text-primary leading-none"
+            >
+              Technical
+              <span class="font-serif italic font-light text-accent-indigo"
+                >toolkit</span
+              >.
+            </h2>
           </div>
+        </div>
+        <div class="skills-grid" id="home-skills-grid">
+          <!-- JS populates this -->
         </div>
       </div>
     </section>
 
     <!-- Collaboration CTA -->
-    <section class="section-padding bg-secondary/10 relative overflow-hidden">
-      <div class="container text-center relative z-10">
-        <h2 class="text-4xl md:text-7xl font-serif italic text-primary mb-12">
-          Looking for an
-          <span class="text-accent-indigo">intern?</span>
-        </h2>
-        <a href="contact.html" class="btn btn-primary group">
-          Get in Touch
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            class="transition-transform group-hover:translate-x-1"
-          >
-            <path d="M5 12h14m-7-7 7 7-7 7" />
-          </svg>
-        </a>
+    <section class="cta-section relative overflow-hidden">
+      <div class="cta-bg-pattern"></div>
+      <div class="container relative z-10">
+        <div class="cta-inner">
+          <p class="cta-label">Collaboration</p>
+          <h2 class="cta-title">
+            Looking for an <span class="cta-highlight">intern?</span>
+          </h2>
+          <p class="cta-desc">
+            I'm actively seeking internship opportunities where I can apply my
+            skills in web development, databases, and software engineering.
+          </p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary group">
+              Get in Touch
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="transition-transform group-hover:translate-x-1"
+              >
+                <path d="M5 12h14m-7-7 7 7-7 7" />
+              </svg>
+            </a>
+            <a
+              href="src/assets/docs/tanvir-rahman-resume.pdf"
+              target="_blank"
+              class="btn btn-secondary group"
+            >
+              Download CV
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="transition-transform group-hover:translate-y-0.5"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 

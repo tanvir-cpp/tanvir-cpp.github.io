@@ -29,48 +29,21 @@
   color: var(--text-primary);
   text-decoration: none;
   font-family: var(--font-serif);
-  font-size: var(--text-2xl);
-  font-style: normal;
-  letter-spacing: var(--tracking-tight);
-  text-transform: uppercase;
-  transition: var(--transition-base);
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-weight: var(--font-bold);
-}
-
-.logo-mark {
+  font-style: italic;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  letter-spacing: -0.04em;
+  transition: color 0.4s ease;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(
-    135deg,
-    var(--accent-indigo) 0%,
-    var(--accent-violet) 100%
-  );
-  color: white;
-  border-radius: var(--radius-md);
-  font-family: var(--font-sans);
-  font-size: var(--text-lg);
-  font-weight: var(--font-black);
-  font-style: normal;
-  transition: var(--transition-base);
+  line-height: 1;
 }
 
-.logo-text {
-  font-family: var(--font-sans);
-  font-size: var(--text-xl);
-  font-weight: var(--font-black);
-  color: var(--text-primary);
-  letter-spacing: 0.05em;
+.nav-logo:hover {
+  color: var(--accent-indigo);
 }
 
-.nav-logo:hover .logo-mark {
-  transform: rotate(-5deg) scale(1.05);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+.logo-dot {
+  color: var(--accent-indigo);
 }
 
 .nav-right {

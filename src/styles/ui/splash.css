@@ -1,140 +1,155 @@
 /* src/styles/ui/splash.css */
 
+/* Lock scroll while splash is visible */
+body {
+  overflow: hidden;
+}
+
+body.loaded {
+  overflow: auto !important;
+}
+
 .splash-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-main);
-    transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1), opacity 1.2s ease;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+  transition:
+    transform 1.2s cubic-bezier(0.85, 0, 0.15, 1),
+    opacity 1.2s ease;
 }
 
 .splash-screen.hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .splash-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
 }
 
 .splash-text {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(3rem, 15vw, 6rem);
-    font-weight: 300;
-    color: var(--text-primary);
-    display: flex;
-    overflow: hidden;
-    letter-spacing: -0.02em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(3rem, 15vw, 6rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  display: flex;
+  overflow: hidden;
+  letter-spacing: -0.02em;
 }
 
 .letter {
-    display: inline-block;
-    transform: translateY(110%);
-    animation: letterUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  display: inline-block;
+  transform: translateY(110%);
+  animation: letterUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .dot {
-    color: var(--accent-indigo);
-    transform: translateY(110%);
-    animation: letterUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.6s;
+  color: var(--accent-indigo);
+  transform: translateY(110%);
+  animation: letterUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.6s;
 }
 
 /* Staggered animation for letters */
 .letter:nth-child(1) {
-    animation-delay: 0.1s;
+  animation-delay: 0.1s;
 }
 
 .letter:nth-child(2) {
-    animation-delay: 0.15s;
+  animation-delay: 0.15s;
 }
 
 .letter:nth-child(3) {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .letter:nth-child(4) {
-    animation-delay: 0.25s;
+  animation-delay: 0.25s;
 }
 
 .letter:nth-child(5) {
-    animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .letter:nth-child(6) {
-    animation-delay: 0.35s;
+  animation-delay: 0.35s;
 }
 
 @keyframes letterUp {
-    to {
-        transform: translateY(0);
-    }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .splash-loader {
-    width: 200px;
-    height: 2px;
-    background: var(--border-main);
-    position: relative;
-    overflow: hidden;
-    border-radius: 100px;
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards 0.8s;
+  width: 200px;
+  height: 2px;
+  background: var(--border-main);
+  position: relative;
+  overflow: hidden;
+  border-radius: 100px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.8s;
 }
 
 .loader-fill {
-    position: absolute;
-    inset: 0;
-    background: var(--accent-indigo);
-    width: 0%;
-    animation: loadProgress 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  position: absolute;
+  inset: 0;
+  background: var(--accent-indigo);
+  width: 0%;
+  animation: loadProgress 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 @keyframes loadProgress {
-    0% {
-        width: 0%;
-    }
+  0% {
+    width: 0%;
+  }
 
-    50% {
-        width: 70%;
-    }
+  50% {
+    width: 70%;
+  }
 
-    100% {
-        width: 100%;
-    }
+  100% {
+    width: 100%;
+  }
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Decorative ambient glow for splash */
 .splash-curtain::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40vw;
-    height: 40vw;
-    background: radial-gradient(circle, var(--accent-indigo-muted), transparent 70%);
-    opacity: 0;
-    animation: glowFade 2s ease forwards 0.5s;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(
+    circle,
+    var(--accent-indigo-muted),
+    transparent 70%
+  );
+  opacity: 0;
+  animation: glowFade 2s ease forwards 0.5s;
+  pointer-events: none;
 }
 
 @keyframes glowFade {
-    to {
-        opacity: 0.3;
-    }
+  to {
+    opacity: 0.3;
+  }
 }

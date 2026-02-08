@@ -25,14 +25,14 @@ export const refreshElements = () => {
 
   // Core Grids
   elements.bentoGrid = document.querySelector(".bento-grid");
+  elements.homeProjectsGrid = document.getElementById("featured-projects-grid");
   elements.skillsGrid = document.querySelector(".skills-grid");
+  elements.homeSkillsGrid = document.getElementById("home-skills-grid");
   elements.certificationsGrid = document.querySelector(".certifications-grid");
 
   elements.researchList = document.getElementById("research-list");
   elements.recommendedList = document.getElementById("recommended-list");
   elements.educationList = document.getElementById("education-list");
-  elements.aboutLead = document.getElementById("about-lead");
-  elements.aboutBio = document.getElementById("about-bio");
 };
 
 // Initial run
@@ -49,57 +49,28 @@ export const renderLatestResearchBadge = (paper) => {
   elements.latestResearchBadge.classList.remove("hidden");
 };
 
-export const triggerConfetti = () => {
-  const duration = 2.5 * 1000;
-  const end = Date.now() + duration;
-
-  // Premium color palette - gold, white, and subtle accents
-  const colors = [
-    "#FFD700", // Gold
-    "#FFF8DC", // Cornsilk (soft gold)
-    "#FFFFFF", // White
-    "#E8E8E8", // Light gray
-    "#C0C0C0", // Silver
-    "#FF6B6B", // Soft coral (matches footer red)
-  ];
-
-  (function frame() {
-    confetti({
-      particleCount: 4,
-      angle: 60,
-      spread: 65,
-      origin: { x: 0, y: 0.7 },
-      colors: colors,
-      shapes: ["circle", "square"],
-      gravity: 1.2,
-      drift: 0,
-      ticks: 200,
-    });
-    confetti({
-      particleCount: 4,
-      angle: 120,
-      spread: 65,
-      origin: { x: 1, y: 0.7 },
-      colors: colors,
-      shapes: ["circle", "square"],
-      gravity: 1.2,
-      drift: 0,
-      ticks: 200,
-    });
-
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  })();
-};
 export const renderProjects = (projects) => {
-  if (!elements.bentoGrid || !projects) return;
+  if (!projects) return;
 
   // Update project count badge
   const countEl = document.getElementById("project-count");
   if (countEl) countEl.textContent = `${projects.length} Projects`;
 
-  // Render featured cards (separate grid on projects page)
+  // Homepage: render featured cards into the home projects grid
+  if (
+    elements.homeProjectsGrid &&
+    !elements.homeProjectsGrid.closest(".projects-section")
+  ) {
+    const featured = projects.filter((p) => p.featured);
+    if (featured.length > 0) {
+      elements.homeProjectsGrid.innerHTML = featured
+        .map((project, i) => templates.featuredCard(project, i))
+        .join("");
+    }
+    return;
+  }
+
+  // Projects page: render featured cards in separate grid
   const featuredGrid = document.getElementById("projects-featured-grid");
   if (featuredGrid) {
     const featured = projects.filter((p) => p.featured);
@@ -108,11 +79,13 @@ export const renderProjects = (projects) => {
         .map((project, i) => templates.featuredCard(project, i))
         .join("");
     } else {
-      // Hide the featured section if no featured projects
       const featuredSection = featuredGrid.closest("section");
       if (featuredSection) featuredSection.style.display = "none";
     }
   }
+
+  // Bento grid (projects page list view)
+  if (!elements.bentoGrid) return;
 
   if (projects.length === 0) {
     elements.bentoGrid.innerHTML = `
@@ -129,11 +102,15 @@ export const renderProjects = (projects) => {
 };
 
 export const renderSkills = (skills) => {
-  if (!elements.skillsGrid || !skills) return;
+  const html = skills.map((group) => templates.skillGroup(group)).join("");
 
-  elements.skillsGrid.innerHTML = skills
-    .map((group) => templates.skillGroup(group))
-    .join("");
+  if (elements.skillsGrid) {
+    elements.skillsGrid.innerHTML = html;
+  }
+
+  if (elements.homeSkillsGrid) {
+    elements.homeSkillsGrid.innerHTML = html;
+  }
 };
 
 export const renderCertifications = (certifications) => {
@@ -279,30 +256,4 @@ export const renderEducation = (education) => {
   `,
     )
     .join("");
-};
-
-export const renderAbout = (aboutData) => {
-  if (!aboutData) {
-    console.error("No about data provided");
-    return;
-  }
-
-  // 1. Render Hero Content
-  if (aboutData.hero) {
-    const hero = aboutData.hero;
-    const leadEl = document.getElementById("about-lead");
-    const bioEl = document.getElementById("about-bio");
-
-    if (leadEl) leadEl.innerHTML = hero.lead;
-    if (bioEl) bioEl.innerHTML = `<p>${hero.bio}</p>`;
-  }
-
-  // 2. Render Quick Facts Grid
-  const factsGrid = document.getElementById("quick-facts-grid");
-
-  if (factsGrid && aboutData.quickFacts) {
-    factsGrid.innerHTML = aboutData.quickFacts
-      .map((fact, index) => templates.fact(fact, index))
-      .join("");
-  }
 };

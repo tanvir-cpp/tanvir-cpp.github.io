@@ -3,9 +3,6 @@
  * Centralized export for all UI components and utilities
  */
 
-// Export icons
-export { ICONS } from "./icons.js";
-
 // Export templates
 export * as templates from "./templates.js";
 

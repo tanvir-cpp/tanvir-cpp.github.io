@@ -166,7 +166,31 @@
 }
 
 /* ═══════════════════════════════════════════
-   INSTAGRAM GRID (Homepage only)
+   HOMEPAGE PROJECTS SHOWCASE
+   ═══════════════════════════════════════════ */
+.home-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.home-projects-grid .project-featured-card:first-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .home-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-projects-grid .project-featured-card {
+    min-height: 200px;
+    padding: var(--space-6);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BENTO GRID (Used on projects page list)
    ═══════════════════════════════════════════ */
 .bento-grid {
   display: grid;

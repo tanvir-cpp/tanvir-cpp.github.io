@@ -6,8 +6,7 @@
 export const headerHTML = `
     <nav class="nav container" aria-label="Main Navigation">
       <a href="index.html" class="nav-logo" aria-label="Tanvir Rahman Home">
-        <span class="logo-mark">T</span>
-        <span class="logo-text">R</span>
+        tanvir<span class="logo-dot">.</span>
       </a>
       <div class="nav-right">
         <ul class="nav-list" role="list">

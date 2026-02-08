@@ -24,91 +24,65 @@
   <body>
     <header class="header"></header>
 
-    <main
-      class="min-h-screen pt-32 pb-32 bg-main flex flex-col justify-center relative overflow-hidden"
-    >
+    <main class="contact-page">
       <!-- Subtle Ambient Glow -->
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-indigo/5 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse-slow"
-      ></div>
+      <div class="contact-glow"></div>
 
-      <div class="container mx-auto px-6 max-w-2xl relative z-10">
-        <header
-          class="text-center mb-16 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards]"
-        >
-          <h1
-            class="font-serif italic text-7xl md:text-9xl text-primary mb-8 tracking-tighter leading-tight"
-          >
-            hello<span class="text-accent-indigo">.</span>
+      <div class="container contact-container">
+        <div class="contact-header">
+          <h1 class="contact-title">
+            hello<span class="contact-title-dot">.</span>
           </h1>
-          <p
-            class="text-secondary/70 text-lg md:text-xl font-light max-w-lg mx-auto leading-relaxed"
-          >
+          <p class="contact-subtitle">
             Looking for internship opportunities or want to collaborate?
-            <br class="hidden md:block" />
+            <br />
             Reach out directly at
-            <button
-              onclick="copyEmail(this)"
-              class="group inline-flex items-center gap-2 text-primary font-medium border-b border-primary/10 hover:border-accent-indigo transition-all cursor-pointer"
-            >
+            <button onclick="copyEmail(this)" class="contact-email-btn">
               <span>mailtanvirrahman@gmail.com</span>
-              <span
-                class="opacity-0 group-hover:opacity-100 transition-opacity text-xs text-accent-indigo font-bold tracking-wider"
-                >[COPY]</span
-              >
+              <span class="contact-email-copy">[COPY]</span>
             </button>
           </p>
-        </header>
+        </div>
 
-        <form
-          id="contact-form"
-          class="space-y-4 opacity-0 animate-[fadeIn_0.8s_ease-out_0.2s_forwards]"
-        >
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="relative group">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                required
-                class="w-full bg-secondary/10 border-none rounded-2xl px-6 py-5 text-sm text-primary placeholder-secondary/30 outline-none focus:bg-secondary/20 transition-all focus:ring-1 focus:ring-accent-indigo/30"
-              />
-            </div>
-            <div class="relative group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-                class="w-full bg-secondary/10 border-none rounded-2xl px-6 py-5 text-sm text-primary placeholder-secondary/30 outline-none focus:bg-secondary/20 transition-all focus:ring-1 focus:ring-accent-indigo/30"
-              />
-            </div>
-          </div>
-
-          <div class="relative group">
+        <form id="contact-form" class="contact-form">
+          <div class="contact-form-row">
             <input
               type="text"
-              name="subject"
-              placeholder="Subject (optional)"
-              class="w-full bg-secondary/10 border-none rounded-2xl px-6 py-5 text-sm text-primary placeholder-secondary/30 outline-none focus:bg-secondary/20 transition-all focus:ring-1 focus:ring-accent-indigo/30"
+              name="name"
+              placeholder="Name"
+              required
+              class="contact-input"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              class="contact-input"
             />
           </div>
 
-          <div class="relative group">
-            <textarea
-              name="message"
-              rows="5"
-              placeholder="Message"
-              required
-              class="w-full bg-secondary/10 border-none rounded-2xl px-6 py-5 text-sm text-primary placeholder-secondary/30 outline-none focus:bg-secondary/20 transition-all resize-none focus:ring-1 focus:ring-accent-indigo/30"
-            ></textarea>
-          </div>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject (optional)"
+            class="contact-input"
+          />
 
-          <div class="pt-6">
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Message"
+            required
+            class="contact-input"
+          ></textarea>
+
+          <div class="contact-submit-wrap">
             <button
               type="submit"
               id="submit-btn"
-              class="btn btn-primary w-full group py-5"
+              class="btn btn-primary w-full group"
+              style="padding-top: 1.25rem; padding-bottom: 1.25rem"
             >
               <span>Send Message</span>
               <svg
@@ -122,24 +96,17 @@
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
               </svg>
             </button>
-            <p
-              class="text-center text-[10px] text-secondary/30 uppercase tracking-widest mt-4"
-            >
-              Powered by EmailJS
-            </p>
           </div>
         </form>
 
-        <div
-          class="mt-20 pt-12 flex justify-center gap-8 opacity-50 hover:opacity-100 transition-opacity duration-500 delay-500 animate-[fadeIn_0.8s_ease-out_0.4s_forwards]"
-        >
+        <div class="contact-social">
           <a
             href="https://www.linkedin.com/in/muhammud-tanvir-rahman/"
             target="_blank"
-            class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+            rel="noopener noreferrer"
+            class="contact-social-link"
           >
             <svg
-              class="w-4 h-4"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -158,10 +125,10 @@
           <a
             href="https://x.com/tanvir_tweet"
             target="_blank"
-            class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+            rel="noopener noreferrer"
+            class="contact-social-link"
           >
             <svg
-              class="w-4 h-4"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -177,10 +144,10 @@
           <a
             href="https://github.com/taanvirrahman"
             target="_blank"
-            class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+            rel="noopener noreferrer"
+            class="contact-social-link"
           >
             <svg
-              class="w-4 h-4"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

@@ -27,14 +27,9 @@ const initHeroBadges = async () => {
 
 const initDynamicContent = async () => {
   // 1. Projects (Always load if grid exists)
-  if (view.elements.bentoGrid) {
+  if (view.elements.bentoGrid || view.elements.homeProjectsGrid) {
     try {
       let projects = await model.fetchProjects();
-
-      // Feature: Filter homepage to only show featured projects
-      if (view.elements.bentoGrid.id === "featured-projects-grid") {
-        projects = projects.filter((project) => project.featured);
-      }
 
       view.renderProjects(projects);
 
@@ -47,7 +42,23 @@ const initDynamicContent = async () => {
     }
   }
 
-  // 2. Specialized Page Logic - Research/About (Redirected from main logic)
+  // 2. Skills (Homepage and About page)
+  if (view.elements.skillsGrid || view.elements.homeSkillsGrid) {
+    try {
+      const config = await model.fetchConfig();
+      if (config?.skills) {
+        view.renderSkills(config.skills);
+
+        document
+          .querySelectorAll(".skills-category.reveal")
+          .forEach((el) => observeReveal(el));
+      }
+    } catch (error) {
+      console.warn("Failed to load skills:", error);
+    }
+  }
+
+  // 3. Specialized Page Logic - Research/About (Redirected from main logic)
   if (view.elements.researchList || view.elements.recommendedList) {
     try {
       const papers = await model.fetchResearchPapers();

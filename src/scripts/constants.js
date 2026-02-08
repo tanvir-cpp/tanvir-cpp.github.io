@@ -27,24 +27,10 @@ export const ANIMATION = {
   TRANSITION_DURATION: 400, // ms for theme transitions
 };
 
-// Theme constants
-export const THEME = {
-  LIGHT: "light",
-  STORAGE_KEY: "theme",
-};
-
 // Social links
 export const SOCIAL = {
   GITHUB: "https://github.com/taanvirrahman",
   TWITTER: "https://x.com/tanvir_tweet",
   LINKEDIN: "https://www.linkedin.com/in/muhammud-tanvir-rahman/",
   EMAIL: "mailtanvirrahman@gmail.com",
-};
-
-// SEO/Meta
-export const META = {
-  SITE_NAME: "Tanvir Rahman",
-  SITE_TAGLINE: "CSE Student at AIUB",
-  LOCATION: "Dhaka, Bangladesh",
-  COORDINATES: "23.8103N // 90.4125E",
 };
